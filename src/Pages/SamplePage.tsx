@@ -6,12 +6,14 @@ import Canvas from '../Components/Canvas';
 
 
 function SamplePahina() {
+  const [message, setMessage] = useState('');
+  const [textAreaText, setTextAreaText] = useState('')
   const REACT_VERSION = React.version;
-  const changeText = (message:string) => {setMessage(message); console.log(message)};
-  const [message, setMessage] = useState('a');
-
+  
+  
+  const changeText = (message:string) => {setMessage(textAreaText); console.log(message)};
   const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-    setMessage(event.target.value);
+    setTextAreaText(event.target.value);
   };
 
   return (
@@ -22,22 +24,25 @@ function SamplePahina() {
           <div>
             <textarea 
             onChange={handleChange}
-            value={message}/>
-            <button  onClick = {function(event){ func1(message); changeText(message)}}
+            value={textAreaText}/>
+            <button  onClick = {function(){ changeText(message)}}
             name = "Update">
               CLICK ME
             </button>
           </div>
           <Canvas 
               nameString={message}
+              i = {1}
+              arc = {0}
+              rad= {0}
           />
     </div>
   );
 }
 
-function func1(message:string){
-  console.log(message);
-}
+// function func1(message:string){
+//   console.log(message);
+// }
 
 // function func2(this: any, message:string){
 //   this.changeText(message);
